@@ -49,6 +49,29 @@ int main() {
     scanf("%s", input_string);
     int current_state = start_state;
     int length = strlen(input_string);
+    for(int i = 0; i < length; i++) {
+        int symbol_index;
+        for(int j = 0; j < num_symbols; j++) {
+            if(symbols[j] == input_string[i]) {
+                symbol_index = j;
+                break;
+            }
+        }
+        current_state = transition_table[current_state][symbol_index];
+    }
+    int is_accepted = 0;
+    for(int i = 0; i < num_accept_states; i++) {
+        if(current_state == accept_states[i]) {
+            is_accepted = 1;
+            break;
+        }
+    }
+    if(is_accepted) {
+        printf("String accepted\n");
+    } else {
+        printf("String rejected\n");
+    }
+    
     
 
    
