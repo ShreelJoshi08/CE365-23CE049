@@ -46,7 +46,7 @@ int main() {
 
         for (int i = 0; i < line.length(); i++) {
 
-            // Handle block comments
+            
             if (inBlockComment) {
                 if (i + 1 < line.length() && line[i] == '*' && line[i + 1] == '/') {
                     inBlockComment = false;
@@ -55,21 +55,21 @@ int main() {
                 continue;
             }
 
-            // Start block comment
+            
             if (i + 1 < line.length() && line[i] == '/' && line[i + 1] == '*') {
                 inBlockComment = true;
                 i++;
                 continue;
             }
 
-            // Single line comment
+            
             if (i + 1 < line.length() && line[i] == '/' && line[i + 1] == '/') {
                 break;
             }
 
             if (isspace(line[i])) continue;
 
-            // Identifier / Keyword
+            
             if (isalpha(line[i]) || line[i] == '_') {
                 string word;
                 while (i < line.length() && (isalnum(line[i]) || line[i] == '_'))
@@ -86,7 +86,7 @@ int main() {
                 }
             }
 
-            // Number or invalid constant
+            
             else if (isdigit(line[i])) {
                 string num;
                 while (i < line.length() && (isalnum(line[i]) || line[i] == '.'))
@@ -102,7 +102,7 @@ int main() {
                     );
             }
 
-            // String literal
+            
             else if (line[i] == '"') {
                 string str = "\"";
                 i++;
@@ -112,12 +112,12 @@ int main() {
                 cout << "Constant: " << str << endl;
             }
 
-            // Operator
+            
             else if (operators.count(line[i])) {
                 cout << "Operator: " << line[i] << endl;
             }
 
-            // Punctuation
+            
             else if (punctuations.count(line[i])) {
                 cout << "Punctuation: " << line[i] << endl;
             }
